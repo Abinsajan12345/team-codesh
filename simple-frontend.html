@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Playfair+Display:wght@700&family=Roboto+Mono&display=swap" rel="stylesheet">
-    <!-- --- NEW: Including the Socket.IO client library --- -->
+    <!-- Including the Socket.IO client library -->
     <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
     
     <style>
@@ -86,8 +86,10 @@
         const textDisplay = document.getElementById('text-display');
         const selectionIndicator = document.getElementById('selection-indicator');
 
-        // --- NEW: Connecting with Socket.IO ---
-        const socket = io("http://localhost:5000");
+        // --- FIX: Connecting with a relative URL ---
+        // This tells Socket.IO to connect to the same host that is serving this page,
+        // which is exactly what we need for Render.
+        const socket = io();
 
         socket.on("connect", () => {
             console.log("Connected to Flask-SocketIO server!");
